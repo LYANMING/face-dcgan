@@ -37,13 +37,13 @@ def train(args):
     if (device.type == 'cuda') and (args.ngpu > 1):
         net_G = nn.parallel(net_G, list(range(args.ngpu)))
     net_G.apply(weight_init)    # 生成器应用权值
-    net_G.load_state_dict(torch.load('checkpoint/netG_epoch_10.pth', map_location=torch.device('cpu')))
+    ## net_G.load_state_dict(torch.load('checkpoint/netG_epoch_10.pth', map_location=torch.device('cpu')))
 
     net_D = Discriminator(ngpu = args.ngpu, nc = nc, ndf = args.ndf).to(device)
     if (device.type == 'cuda') and (args.ngpu > 1):
         net_D = nn.parallel(net_D, list(range(args.ngpu)))
     net_D.apply(weight_init)    # 判别器应用权值
-    net_D.load_state_dict(torch.load('checkpoint/netD_epoch_10.pth', map_location=torch.device('cpu')))
+    ## net_D.load_state_dict(torch.load('checkpoint/netD_epoch_10.pth', map_location=torch.device('cpu')))
 
     criterion = nn.BCELoss()    # 使用损失函数
     fixed_noise = torch.rand(args.batchSize, args.nz, 1, 1, device = device) # z，输入噪声
@@ -56,8 +56,8 @@ def train(args):
     G_losses = []   # 损失
     D_losses = []
 
-    print("开始训练")  # 训练
-    for epoch in range(args.epochs + 100):    # 训练循环次数
+    print("开始DCGAN训练")  # 训练
+    for epoch in range(args.epochs):    # 训练循环次数
         net_D.train()   # 对判别器进行训练
         net_G.train()   # 对生成器进行训练
         for step, data in enumerate(dataloader, 0):
@@ -168,8 +168,8 @@ def train_w(args):
     G_losses = []
     D_losses = []
 
-    print("开始训练")  # 训练过程
-    for epoch in range(args.epochs + 100):  # 训练循环次数
+    print("开始W-DCGAN训练")  # 训练过程
+    for epoch in range(args.epochs):  # 训练循环次数
         net_D.train()
         net_G.train()
         for step, data in enumerate(dataloader, 0):
