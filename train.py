@@ -29,7 +29,7 @@ def train(args):
     ])
     dataset = FaceDataset(root = args.dataroot, transform = transform)  # 初始化数据集
     dataloader = DataLoader(dataset, batch_size = args.batchSize, shuffle = True, num_workers = args.workers)   # 加载数据集
-    nc = 3
+    nc = 3  # 图片通道数
 
     device = torch.device("cuda:0" if (torch.cuda.is_available() and args.ngpu > 0) else "cpu") # 选用设备
 
@@ -37,13 +37,13 @@ def train(args):
     if (device.type == 'cuda') and (args.ngpu > 1):
         net_G = nn.parallel(net_G, list(range(args.ngpu)))
     net_G.apply(weight_init)    # 生成器应用权值
-    ## net_G.load_state_dict(torch.load('checkpoint/netG_epoch_10.pth', map_location=torch.device('cpu')))
+    ## net_G.load_state_dict(torch.load('checkpoint/netG_epoch_10.pth', map_location=torch.device('cpu')))  # 加载保存的权值
 
     net_D = Discriminator(ngpu = args.ngpu, nc = nc, ndf = args.ndf).to(device)
     if (device.type == 'cuda') and (args.ngpu > 1):
         net_D = nn.parallel(net_D, list(range(args.ngpu)))
     net_D.apply(weight_init)    # 判别器应用权值
-    ## net_D.load_state_dict(torch.load('checkpoint/netD_epoch_10.pth', map_location=torch.device('cpu')))
+    ## net_D.load_state_dict(torch.load('checkpoint/netD_epoch_10.pth', map_location=torch.device('cpu')))  
 
     criterion = nn.BCELoss()    # 使用损失函数
     fixed_noise = torch.rand(args.batchSize, args.nz, 1, 1, device = device) # z，输入噪声
