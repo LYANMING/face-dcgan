@@ -113,15 +113,16 @@ def train(args):
         if epoch % 5 == 0:
             torch.save(net_G.state_dict(), '%s/netG_epoch_%d.pth' % (args.ckpt, epoch))
             torch.save(net_D.state_dict(), '%s/netD_epoch_%d.pth' % (args.ckpt, epoch))
-
-    plt.figure(figsize = (10, 5))
-    plt.title("Generator and Discriminator Loss During Training")
-    plt.plot(G_losses, label = "G")
-    plt.plot(D_losses, label = "D")
-    plt.xlabel("iterations")
-    plt.ylabel("Loss")
-    plt.legend()
-    plt.show()
+        if epoch % 5 == 0:
+            plt.figure(figsize = (10, 5))
+            plt.title("Generator and Discriminator Loss During Training")
+            plt.plot(G_losses, label = "G")
+            plt.plot(D_losses, label = "D")
+            plt.xlabel("iterations")
+            plt.ylabel("Loss")
+            plt.legend()
+            plt.savefig('/content/DCGAN-WGAN/m_img/test1.jpg')
+            plt.show()
 
 
 def train_w(args):
@@ -225,15 +226,16 @@ def train_w(args):
         if epoch % 5 == 0:
             torch.save(net_G.state_dict(), '%s/netG_epoch_%d.pth' % (args.ckpt, epoch))
             torch.save(net_D.state_dict(), '%s/netD_epoch_%d.pth' % (args.ckpt, epoch))
-
-    plt.figure(figsize = (10, 5))
-    plt.title("Generator and Discriminator Loss During Training")
-    plt.plot(G_losses, label = "G")
-    plt.plot(D_losses, label = "D")
-    plt.xlabel("iterations")
-    plt.ylabel("Loss")
-    plt.legend()
-    plt.show()
+        if epoch % 5 == 0:
+            plt.figure(figsize = (10, 5))
+            plt.title("Generator and Discriminator Loss During Training")
+            plt.plot(G_losses, label = "G")
+            plt.plot(D_losses, label = "D")
+            plt.xlabel("iterations")
+            plt.ylabel("Loss")
+            plt.legend()
+            plt.savefig('/content/DCGAN-WGAN/m_img/test1.jpg')
+            plt.show()
 
 
 
