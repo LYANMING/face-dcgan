@@ -2,7 +2,6 @@ import argparse
 
 def get_args(): # 参数
     parser = argparse.ArgumentParser()
-    parser.add_argument('--model', type=str, default='1', help='训练模型')
     parser.add_argument('--dataroot', type = str, default = './image', help = '存放数据的地址')
     parser.add_argument('--workers', type = int, default = 2, help = '进行数据预处理及数据加载使用进程数')
     parser.add_argument('--batchSize', type = int, default = 64, help = '一次batch进入模型的图片数目')
