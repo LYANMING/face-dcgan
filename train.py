@@ -10,7 +10,6 @@ from args import get_args
 from utils import weight_init
 from dataset import FaceDataset
 from model import Generator, Discriminator
-from model_w import Generator_w, Discriminator_w
 
 def train(args):
 
