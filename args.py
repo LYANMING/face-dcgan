@@ -10,7 +10,7 @@ def get_args(): # 参数
     parser.add_argument('--ngf', type = int, default = 64, help = '生成网络中基础feature数目')
     parser.add_argument('--ndf', type = int, default = 64, help = '判别网络中基础feature数目')
     parser.add_argument('--epochs', type = int, default = 100, help = '训练过程中epoch数目')
-    parser.add_argument('--lr', type = float, default = 2e-3, help = '初始学习率 默认0.002')
+    parser.add_argument('--lr', type = float, default = 2e-4, help = '初始学习率 默认0.0002')
     parser.add_argument('--beta1', type = float, default = 0.5, help = '使用Adam优化算法中的bata1参数值')
     parser.add_argument('--cuda', action = 'store_true', help = '指定使用GPU进行训练')
     parser.add_argument('--ngpu', type = int, default = 1, help = '使用gpu数量')
