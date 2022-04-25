@@ -127,7 +127,5 @@ def train(args):
 
 if __name__ == '__main__':
     args = get_args()
-    if args.model == "1":
-        train(args)
-    else:
-        train_w(args)
+    train(args)
+
